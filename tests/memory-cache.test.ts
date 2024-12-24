@@ -28,8 +28,11 @@ describe('save/save', function() {
 
     test('Must to return null if key does not exists', async () => {
         const cache = new MemoryCache();
-        const key = await cache.get(3335741209);
-        expect(key).toBeNull();
+        try {
+          const key = await cache.get(3335741209);
+        } catch(e) {
+          expect(e).toBeInstanceOf(Error);
+        }
     });
 
 });

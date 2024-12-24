@@ -93,4 +93,16 @@ describe('Verifier', function() {
         });
     });
 
+    test("Parse data with special characters", async () => {
+        const verifier = new Verifier();
+        const qs = 'ad_network=3525379893916449117&ad_unit=3395806835' +
+                   '&custom_data=backupUserId%3D1711190966356008205' + 
+                   '&reward_amount=5000&reward_item=Credits&timestamp=1735021108231' +
+                   '&transaction_id=000629fe11edef6d038327ed89112d16' +
+                   '&user_id=1711190966356008205&signature=MEYCIQDgZt' +
+                   'bzCw4t74aM-mWe8y_a8c9HrXPjUTb5-N9Lz9b8XwIhAIrxEcE' +
+                   'WQlvoceQxkb2MJUv2XngIRnbqdvKeZs0_hyFD&key_id=3335741209';
+        const res = await verifier.verify(qs);
+        expect(res).toBeTruthy();
+    });
 });

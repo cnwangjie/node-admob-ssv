@@ -53,7 +53,11 @@ export function parseMessage(data: Record<string, any>): ParsedMessage {
   debug(`Parsing message`)
   const { key_id, signature, ...fdata } = data
   // Sort atttributes
-  const qs = querystring.stringify(fdata).split('&').sort().join('&')
+  const qs = querystring
+    .stringify(fdata, undefined, undefined, { encodeURIComponent: (s) => s })
+    .split('&')
+    .sort()
+    .join('&')
 
   return {
     keyId: Number.parseInt(key_id, 10),
