@@ -24,7 +24,7 @@ export default class KeyProvider implements KeyProviderInterface {
 
   async get(keyId: number): Promise<KeyObject> {
     if (!(await this.cache.has(keyId))) {
-      const keys = await this.fetcher.fetch()
+      const keys = await this.fetcher.fetch({ retries: 3 })
       for (const rawKey of keys) {
         await this.cache.save(rawKey)
       }
