@@ -1,6 +1,6 @@
 # AdMob rewarded ads SSV for Node.js
 
-Tool for validate AdMob SSV signatures from backend 
+Tool for validate AdMob SSV signatures from backend
 
 ## Getting Started 🚀
 
@@ -13,23 +13,23 @@ Tool for validate AdMob SSV signatures from backend
 Install via NPM
 
 ```
-$ npm install --save @exoshtw/admob-ssv
+$ npm install --save admob-ssv
 ```
 
 Or Yarn
 
 ```
-$ yarn add @exoshtw/admob-ssv
+$ yarn add admob-ssv
 ```
 
 ### Usage 📦
 
 Use as ES module:
 
-```JavaScript
+```typescript
 import url from 'url';
 import http from 'http';
-import Verifier from '@exoshtw/admob-ssv';
+import Verifier from 'admob-ssv';
 
 const verifier = new Verifier();
 
@@ -43,8 +43,8 @@ const server = http.createServer(async (request) => {
 
 Example with express
 
-```JavaScript
-import Verifier from '@exoshtw/admob-ssv';
+```typescript
+import Verifier from 'admob-ssv';
 
 const verifier = new Verifier();
 
@@ -67,39 +67,24 @@ app.get('/ssvcallback', (req, res, next) => {
 
 ```
 
-### Get sources 🔧
+### Example: Passing custom parameters
 
-Clone git repo:
+```typescript
+import Verifier, { KeyProvider, MemoryCache, RetryFetcher } from 'admob-ssv'
 
-```
-$ git clone git@github.com:exoshtw/node-admob-ssv.git
-```
-
-Install deps
-
-```
-$ npm install -d
-```
-
-or 
-
-```
-$ yarn
-```
-
-## Running the tests ⚙️
-
-This lib use Jest for testing, for run this use:
-
-```
-$ npm test
+const verifier = new Verifier({
+  keyProvider: new KeyProvider({
+    cache: new MemoryCache(),
+    fetcher: new RetryFetcher(),
+  }),
+})
 ```
 
 ## Versioning 📌
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [releases on this repository](https://github.com/exoshtw/node-admob-ssv/releases). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [releases on this repository](https://github.com/exoshtw/node-admob-ssv/releases).
 
-## Author ✒️
+## Credit to Original Author ✒️
 
 * **exos** - *Initial work* - [exos](https://github.com/exos)
 

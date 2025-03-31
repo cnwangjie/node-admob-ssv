@@ -5,3 +5,4 @@ import Verifier from './verifier'
 export default Verifier
 export { MemoryCache }
 export { KeyProvider }
+export * from './keydict/fetcher'
